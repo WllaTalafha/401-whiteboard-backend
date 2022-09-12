@@ -9,7 +9,6 @@ const request = supertest(app);
 describe ('testing API server',()=>{
     it('testing main route',async()=>{
         const response = await request.get('/');
-        expect(response.text).toEqual('hello ♥');
-        
+        expect(response.text).toEqual('hello ♥');        
     })  
 })

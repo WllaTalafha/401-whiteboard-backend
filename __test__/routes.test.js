@@ -1,9 +1,7 @@
 'use strict';
 
 const {app} = require('../server');
-
 const supertest = require('supertest');
-
 const req = supertest(app);
 
 describe('testing the CRUD app', () => {
