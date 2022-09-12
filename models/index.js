@@ -4,16 +4,16 @@ const { Sequelize, DataTypes } = require('sequelize');
 const {Post} = require('./post.model');
 require('dotenv').config();
 
-const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_BLUE_URL||"postgresql://wlla:123@localhost:5432/newwdb";
+const POSTGRES_URL = process.env.DATABASE_URL;
 //DATABASE_URL=postgresql://<userName>:<password>@localhost:5433/<Dbname>
 
 const sequelizeOption = {
-  // dialectOptions: {
-  //   ssl: {
-  //     require: true,
-  //     rejectUnauthorized: false
-  //   }
-  // }
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 }
 let sequelize = new Sequelize (POSTGRES_URL,sequelizeOption);
 
