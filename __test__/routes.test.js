@@ -26,7 +26,7 @@ describe('testing the CRUD app', () => {
         }
         let res = await req.post('/post').send(data);
         expect(typeof res.body).toEqual('object');
-        expect(res.statusCode).toBe(200);
+        expect(res.statusCode).toBe(201);
 
      });
 
@@ -39,7 +39,7 @@ describe('testing the CRUD app', () => {
         }
         let res = await req.put('/post/2').send(data);
         expect(typeof res.body).toEqual('object');
-        expect(res.statusCode).toBe(200);
+        expect(res.statusCode).toBe(202);
      });
 
 
@@ -47,4 +47,16 @@ describe('testing the CRUD app', () => {
         let res = await req.delete('/post/6');
         expect(res.statusCode).toBe(204);
      });
+
+     it('test adding one comment', async () => {
+      const data = {
+         commentContent: 'cat',
+         commentID: 2
+      }
+      let res = await req.post('/comment/2').send(data);
+      expect(typeof res.body).toEqual('object');
+      expect(res.statusCode).toBe(201);
+
+  })
+
 });

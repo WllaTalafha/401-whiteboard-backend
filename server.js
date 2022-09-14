@@ -6,12 +6,15 @@ const cors = require ('cors');
 const {handleNotFoundError}=require('./error-handlers/404');
 const {errorHandler}=require('./error-handlers/500');
 const postRouter=require('./routes/post.route');
+const commentRouter=require('./routes/comment.route');
 
 app.use(express.json());
 app.use(cors());
 app.use(postRouter);
+app.use(commentRouter);
 
 app.get('/',handleMain);
+
 function handleMain(req, res){
     res.status(200).send('hello ♥');
 }
