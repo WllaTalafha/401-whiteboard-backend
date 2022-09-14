@@ -33,8 +33,8 @@ describe('testing the CRUD app', () => {
 
      it('test update one post',async () => {
         const data = {
-            postTitle:"hi",
-            postContent: "lolo",
+            postTitle:"hello lovely",
+            postContent: "wlla",
             postStatus: false
         }
         let res = await req.put('/post/2').send(data);
@@ -44,9 +44,7 @@ describe('testing the CRUD app', () => {
 
 
      it('test delete one post',async () => {
-        let res = await req.delete('/post/8');
+        let res = await req.delete('/post/6');
         expect(res.statusCode).toBe(204);
      });
-
-
 });
