@@ -1,10 +1,10 @@
 'use strict';
 
-const User = require('../models/user.model');
+const {users} = require('../models/index');
 
 const saveUser = async (req, res, next) => {
     try {
-        const username = await User.findOne({
+        const username = await users.findOne({
             where: {
                 username: req.body.username
             }
@@ -12,7 +12,7 @@ const saveUser = async (req, res, next) => {
         if (username) {
             return res.status(409).send('Username already taken');
         }
-        const email = await User.findOne({
+        const email = await users.findOne({
             where: {
                 email: req.body.email
             }
