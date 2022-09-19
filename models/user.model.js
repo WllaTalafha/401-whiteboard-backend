@@ -2,7 +2,7 @@
 
 const User = ( sequelize, DataTypes ) => sequelize.define( 'User', {
     
-    userame: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false
     },
