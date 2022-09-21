@@ -2,6 +2,8 @@
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 const { users } = require('../models/index');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const signUp = async (req, res) => {
     try {
@@ -34,6 +36,8 @@ const login = async (req, res) => {
     if (user) {
         const isSame = await bcrypt.compare(password, user.password);
         if (isSame) {
+            let newToken = jwt.sign({ username: user.username }, process.env.SECRET);
+            user.token = newToken;
             res.status(200).json(user);
         } else {
             res.status(401).send('Enter correct password');
@@ -43,8 +47,17 @@ const login = async (req, res) => {
     }
 };
 
+async function allUsers(req, res) {
+    try {
+        const allUsers = await users.findAll();
+        res.send(allUsers);
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 module.exports = {
     signUp,
-    login
+    login,
+    allUsers
 };

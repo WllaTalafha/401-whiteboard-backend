@@ -15,6 +15,9 @@ const User = ( sequelize, DataTypes ) => sequelize.define( 'User', {
         allowNull: false,
         isEmail: true,
         unique: true
+    },
+    token: {
+        type:DataTypes.VIRTUAL
     }
 } );
 
