@@ -20,8 +20,7 @@ async function createComment(req, res) {
 
     }
     await comments.create(newData);
-
-    let Allcomments = await comments.findAll({ where: {commentID: postId} });
+    let Allcomments = await comments.findAll({ where: {commentID: postId , commentAuthorID: userId} });
     res.status(201).send(Allcomments);
 }
 
