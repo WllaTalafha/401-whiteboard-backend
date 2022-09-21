@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
-const { users } = require('../models/index');
+const { users, comments } = require('../models/index');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
@@ -49,7 +49,7 @@ const login = async (req, res) => {
 
 async function allUsers(req, res) {
     try {
-        const allUsers = await users.findAll();
+        const allUsers = await users.findAll({include:comments});
         res.send(allUsers);
     } catch (e) {
         console.log(e);
