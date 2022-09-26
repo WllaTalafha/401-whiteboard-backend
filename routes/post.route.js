@@ -4,12 +4,13 @@ const express = require('express');
 const router = express.Router();
 const {postCRUD,comments} = require('../models/index');
 const { bearerAuth } = require('../middlewares/bearerAuth');
+const { acl } = require('../middlewares/AccessControlList');
 
-router.get('/post',bearerAuth,getAllPost);
-router.get('/post/:id',bearerAuth,getOnePost);
-router.post('/post',bearerAuth,createPost);
-router.put('/post/:id',bearerAuth,updatePost);
-router.delete('/post/:id',bearerAuth,deletePost);
+router.get('/post',bearerAuth, acl('read'), getAllPost);
+router.get('/post/:id',bearerAuth, acl('read'), getOnePost);
+router.post('/post',bearerAuth, acl('create'), createPost);
+router.put('/post/:id',bearerAuth, acl('update'), updatePost);
+router.delete('/post/:id',bearerAuth, acl('delete'), deletePost);
 
 async function getAllPost(req, res) {
     let allPosts= await postCRUD.get(null,[comments]);

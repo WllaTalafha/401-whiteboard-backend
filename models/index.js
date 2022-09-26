@@ -8,7 +8,6 @@ const {User} = require( './user.model' );
 require('dotenv').config();
 
 const POSTGRES_URL = process.env.DATABASE_URL;
-//DATABASE_URL=postgresql://<userName>:<password>@localhost:5433/<Dbname>
 
 const sequelizeOption = {
   dialectOptions: {

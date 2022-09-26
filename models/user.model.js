@@ -1,7 +1,7 @@
 'use strict';
 
-const User = ( sequelize, DataTypes ) => sequelize.define( 'User', {
-    
+const User = (sequelize, DataTypes) => sequelize.define('User', {
+
     username: {
         type: DataTypes.STRING,
         allowNull: false
@@ -17,8 +17,21 @@ const User = ( sequelize, DataTypes ) => sequelize.define( 'User', {
         unique: true
     },
     token: {
-        type:DataTypes.VIRTUAL
+        type: DataTypes.VIRTUAL
+    },
+    role: {
+        type: DataTypes.ENUM('user', 'admin'), defaultValue: 'user', allowNull: false
+    },
+    capabilites: {
+        type: DataTypes.VIRTUAL,
+        get() {
+            const actions = {
+                user: ['read', 'create'],
+                admin: ['read', 'create', 'update', 'delete']
+            }
+            return (actions[this.role]);
+        }
     }
-} );
+});
 
-module.exports = {User};
+module.exports = { User };

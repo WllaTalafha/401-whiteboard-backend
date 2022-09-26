@@ -7,15 +7,16 @@ const jwt = require('jsonwebtoken');
 
 const signUp = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, role } = req.body;
         const data = {
             username,
             email,
-            password: await bcrypt.hash(password, 10)
+            password: await bcrypt.hash(password, 10),
+            role
         };
         const user = await users.create(data);
         if (user) {
-            res.status(200).json(user);
+            res.status(200).send(user);
         }
     } catch (error) {
         console.log(error);
