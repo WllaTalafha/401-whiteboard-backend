@@ -20,7 +20,7 @@ const User = (sequelize, DataTypes) => sequelize.define('User', {
         type: DataTypes.VIRTUAL
     },
     role: {
-        type: DataTypes.ENUM('user', 'admin'), defaultValue: 'user', allowNull: false
+        type: DataTypes.ENUM('user', 'admin'), defaultValue: 'user'
     },
     capabilites: {
         type: DataTypes.VIRTUAL,
